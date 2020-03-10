@@ -1,26 +1,26 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
+import NavBar from './components/NavBar';
+import Dashboard from './pages/pages/Dashboard';
+import Login from './pages/pages/Login';
 import './App.css';
+import Theme from './utils/themeutil';
+import { ThemeProvider } from '@material-ui/core';
+import { Container } from '@material-ui/core';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+class App extends Component {
+  render() {
+    //need to set to a function to see if user is logged in from passport when working
+    const loggedIn = true /* this.state.isLoggedIn */;
+    return (
+      <ThemeProvider theme={Theme}>
+        <NavBar />
+        <Container maxWidth="xl">
+          {loggedIn ? <Dashboard /> : <Login />}
+        </Container>
+      </ThemeProvider>
+    );
+  }
 }
 
 export default App;
